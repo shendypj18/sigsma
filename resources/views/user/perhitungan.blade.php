@@ -17,6 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="{{URL::to('sig/css/sb-admin-2.min.css')}}" rel="stylesheet">
+  <link href="{{URL::to('sig/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 
 </head>
 
@@ -105,7 +107,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="display" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>No</th>
@@ -119,7 +121,10 @@
             <th>normalisasi jarak</th>
             <th>normalisasi kuota</th>
             <th>normalisasi grade</th>
-            <th>hasil kali bobot</th>
+            <th>V1 jarak</th>
+            <th>V1 kuota</th>
+            <th>V1 grade</th>
+            <th>hasil</th>
           </tr>
         </thead>
         <tbody>
@@ -141,7 +146,10 @@
           <td>{{ $data['n_jarak'] }}</td>
           <td>{{ $data['n_kuota'] }}</td>
           <td>{{ $data['n_grade'] }}</td>
+          <td>{{ $data['h_jarak'] }}</td>
           <td>{{ $data['h_kuota'] }}</td>
+          <td>{{ $data['h_grade'] }}</td>
+          <td>{{ $data['hasil'] }}</td>
         </tr>
         @endforeach
         </tbody>
@@ -192,7 +200,14 @@
         </div>
       </div>
     </div>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $('#dataTable').DataTable( {
+        "order": [[ 14, "desc" ]]
+    } );
+} );
 
+  </script>
   <!-- Bootstrap core JavaScript-->
   <script src="{{URL::to('sig/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{URL::to('sig/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -201,7 +216,12 @@
   <script src="{{URL::to('sig/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
   <!-- Custom scripts for all pages-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="{{URL::to('sig/js/sb-admin-2.min.js')}}"></script>
+  <script src="{{URL::to('sig/js/jquery-3.3.1.js')}}"></script>
+  <script src="{{URL::to('sig/js/jquery.dataTables.min.js')}}"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
 </body>
 

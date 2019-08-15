@@ -74,7 +74,11 @@ class HomeController extends Controller
                 'n_jarak' => $this->min_jarak($this->bobot($this->jarak($value->latitude,$value->longitude))),
                 'n_kuota' => $this->max_kuota($this->bobot_kuota($value->DataTahunan->kuota)),
                 'n_grade' => $this->max_grade($this->nilaiUn($value->DataTahunan->passing_grade)),
-                'h_kuota' => $this->h_normal($this->max_kuota($this->bobot_kuota($value->DataTahunan->kuota)))
+                'h_kuota' => $this->h_kuota($this->max_kuota($this->bobot_kuota($value->DataTahunan->kuota))),
+                'h_grade' => $this->h_grade($this->max_grade($this->nilaiUn($value->DataTahunan->passing_grade))),
+                'h_jarak' => $this->h_jarak($this->min_jarak($this->bobot($this->jarak($value->latitude,$value->longitude)))),
+                'hasil' => $this->h_jarak($this->min_jarak($this->bobot($this->jarak($value->latitude,$value->longitude)))) + $this->h_kuota($this->max_kuota($this->bobot_kuota($value->DataTahunan->kuota))) + $this->h_grade($this->max_grade($this->nilaiUn($value->DataTahunan->passing_grade))),
+                
                 
                
             ];
@@ -217,9 +221,25 @@ class HomeController extends Controller
         return $nilai_max;
     }
 
-    public function h_normal($max_kuota)
+    public function h_kuota($max_kuota)
     {
         $nilai = $max_kuota;
+        $hasil = ($nilai * 0.3) * 100;
+
+        return $hasil;
+    }
+
+    public function h_grade($max_grade)
+    {
+        $nilai = $max_grade;
+        $hasil = ($nilai * 0.4) * 100;
+
+        return $hasil;
+    }
+
+    public function h_jarak($min_jarak)
+    {
+        $nilai = $min_jarak;
         $hasil = ($nilai * 0.3) * 100;
 
         return $hasil;
