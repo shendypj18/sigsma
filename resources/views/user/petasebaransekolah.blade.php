@@ -148,7 +148,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{URL::to('sig/js/sb-admin-2.min.js')}}"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP3Pgxfyxnzmop6amI-Un99r3MYjapD_4&libraries=places" async defer> </script> 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOpdBpwYOOlEcMywl8vXLTBjoHqYXtKDU&libraries=places" async defer> </script> 
 <script type="text/javascript"> //library google maps api
     var markers = [
 

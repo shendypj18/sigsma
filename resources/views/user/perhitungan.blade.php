@@ -17,8 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="{{URL::to('sig/css/sb-admin-2.min.css')}}" rel="stylesheet">
-  <link href="{{URL::to('sig/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+  <link href="{{URL::to('sig/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -107,7 +106,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="display" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>No</th>
@@ -115,7 +114,7 @@
             <th>Jarak</th>
             <th>kuota</th>
             <th>Passing Grade</th>
-            <th>Bobot Jarak</th>
+            {{-- <th>Bobot Jarak</th>
             <th>Bobot kuota</th>
             <th>Bobot Passing Grade</th>
             <th>normalisasi jarak</th>
@@ -123,8 +122,8 @@
             <th>normalisasi grade</th>
             <th>V1 jarak</th>
             <th>V1 kuota</th>
-            <th>V1 grade</th>
-            <th>hasil</th>
+            <th>V1 grade</th> --}}
+            <th>hasil Rekomendasi</th>
           </tr>
         </thead>
         <tbody>
@@ -140,7 +139,7 @@
           <td>{{ $data['value'] }} meter</td>
           <td>{{ $data['kuota'] }} Siswa</td>
           <td>{{ $data['grade'] }}</td>
-          <td>{{ $data['bobot'] }}</td>
+          {{-- <td>{{ $data['bobot'] }}</td>
           <td>{{ $data['b_kuota'] }}</td>
           <td>{{ $data['b_grade'] }}</td>
           <td>{{ $data['n_jarak'] }}</td>
@@ -148,8 +147,8 @@
           <td>{{ $data['n_grade'] }}</td>
           <td>{{ $data['h_jarak'] }}</td>
           <td>{{ $data['h_kuota'] }}</td>
-          <td>{{ $data['h_grade'] }}</td>
-          <td>{{ $data['hasil'] }}</td>
+          <td>{{ $data['h_grade'] }}</td> --}}
+          <td>{{ $data['hasil'] }} %</td>
         </tr>
         @endforeach
         </tbody>
@@ -200,28 +199,28 @@
         </div>
       </div>
     </div>
-  <script type="text/javascript">
+  {{-- <script type="text/javascript">
     $(document).ready(function() {
     $('#dataTable').DataTable( {
         "order": [[ 14, "desc" ]]
     } );
 } );
 
-  </script>
+  </script> --}}
   <!-- Bootstrap core JavaScript-->
   <script src="{{URL::to('sig/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{URL::to('sig/vendor/jquery/jquery.js')}}"></script>
   <script src="{{URL::to('sig/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="{{URL::to('sig/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-  <!-- Custom scripts for all pages-->
+  <script src="{{URL::to('sig/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{URL::to('sig/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="{{URL::to('sig/js/demo/datatables-demo.js')}}"></script>
+  <!-- Custom scripts for all pages-->
   <script src="{{URL::to('sig/js/sb-admin-2.min.js')}}"></script>
-  <script src="{{URL::to('sig/js/jquery-3.3.1.js')}}"></script>
-  <script src="{{URL::to('sig/js/jquery.dataTables.min.js')}}"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
 </body>
 
