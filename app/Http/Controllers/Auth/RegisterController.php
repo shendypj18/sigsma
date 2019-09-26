@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/sekolah';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -53,6 +53,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255'],
@@ -60,7 +61,7 @@ class RegisterController extends Controller
             'alamat' => ['required', 'string', 'max:255'],
             'asal_sekolah' => ['required','string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'photo' => ['required','string'],
+            'photo' => ['required'],
             'latitude' => ['required', 'string'],
             'longitude' => ['required', 'string'],
             'b_indo' => ['required', 'numeric'],
@@ -97,6 +98,19 @@ class RegisterController extends Controller
    
      protected function create(array $data)
     {
+
+        $request = request();
+
+        $profileImage = $request->file('photo');
+        Image::make($profileImage)->resize(300, 300);
+        $profileImageSaveAsName = time() . Auth::id() . "-profile." . 
+                                  $profileImage->getClientOriginalExtension();
+
+        $upload_path = 'uploads';
+        $profile_image_url = $profileImageSaveAsName;
+        $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+        
+
         return User::create([
             'name' => $data['name'],
             'username' => $data['username'],
@@ -104,7 +118,7 @@ class RegisterController extends Controller
             'asal_sekolah' => $data['asal_sekolah'],
             'alamat' => $data['alamat'],
             'password' => Hash::make($data['password']),
-            'photo' => $data['photo'],
+            'photo' => $profile_image_url,
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
             'b_indo' => $data['b_indo'],

@@ -198,7 +198,7 @@ class HomeController extends Controller
         $rata = [];
         foreach ($sekolah as $key => $value) {
             $data[] = [
-                'b_grade' => $this->bobot_kuota($value->DataTahunan->kuota),
+                'b_grade' =>$this->nilaiUn($value->DataTahunan->passing_grade),
             ];
         }
         $view = $data;
