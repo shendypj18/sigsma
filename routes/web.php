@@ -29,7 +29,8 @@ Route::get('/rutejalan/{latitude}/{longitude}','HomeController@lihat')->name('us
 Route::get('/rekomendasi','HomeController@rekomendasi')->name('user.rekomendasisekolah');
 Route::get('/hasil','HomeController@hasil')->name('user.hasilrekomendasi');
 Route::get('/perhitungan','HomeController@perhitungan')->name('user.perhitungan');
-
+Route::get('/editprofil/{edituser}','HomeController@editprofil')->name('user.editprofil');
+Route::put('/editprofil/{edituser}/update','HomeController@editprofilsubmit')->name('user.editprofil.submit');
 
 Route::prefix('admin')->group(function()
 {

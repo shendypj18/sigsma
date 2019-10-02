@@ -5,7 +5,9 @@
   </a>
   <!-- Dropdown - User Information -->
   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-   <div class="dropdown-divider"></div>
+    <div class="dropdown-divider"></div>
+    <a href="{{route('user.editprofil',Auth::user()->id)}}"><i class="fa fa-sign-out fa-fw"></i> Profil</a>
+    <div class="dropdown-divider"></div>
        <a href="{{ route('logout') }}"
          onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

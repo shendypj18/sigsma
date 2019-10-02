@@ -117,9 +117,11 @@
           </tr>
         </thead>
         <tbody>
+          <? $i=0 ?>
         @foreach($sekolah as $data)
+        <? $i++ ?>
         <tr>
-        <td></td>
+        <td>{{$i}}</td>
         <td>
         {{$data->nama_sekolah}}
         </td>
