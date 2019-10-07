@@ -11,13 +11,20 @@
 
   <title>SIG Sekolah</title>
 
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"> 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/js/star-rating.min.js"></script>
+
   <!-- Custom fonts for this template-->
   <link href="{{URL::to('sig/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="{{URL::to('sig/css/sb-admin-2.min.css')}}" rel="stylesheet">
-  <link href="{{URL::to('sig/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -48,7 +55,6 @@
 
             <!-- Topbar Search -->
           
-
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
@@ -87,76 +93,43 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Tabel perhitungan</h1>
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-  <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Tabel Perhitungan</h6>
-    @include('admin.notif')
-  </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Sekolah</th>
-            <th>Jarak</th>
-            <th>kuota</th>
-            <th>Passing Grade</th>
-            {{-- <th>Bobot Jarak</th>
-            <th>Bobot kuota</th>
-            <th>Bobot Passing Grade</th>
-            <th>normalisasi jarak</th>
-            <th>normalisasi kuota</th>
-            <th>normalisasi grade</th>
-            <th>V1 jarak</th>
-            <th>V1 kuota</th>
-            <th>V1 grade</th> --}}
-            <th>hasil Rekomendasi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php $i=0 ?>
-        @foreach($view as $data)
-        <?php $i++ ?>
-        <tr>
-        <td>{{$i}}</td>
-          
-          {{-- <td>{{ $data['nama_sekolah'] }}</td>
-          <td>{{ $data['bobot'] }}</td>
-          <td>{{ $data['value'] }} meter</td>
-          <td>{{ $data['kuota'] }}</td> --}}
-          <td>{{ $data['nama_sekolah'] }}</td>
-          <td>{{ $data['value'] }} meter</td>
-          <td>{{ $data['kuota'] }} Siswa</td>
-          <td>{{ $data['grade'] }}</td>
-          {{-- <td>{{ $data['bobot'] }}</td>
-          <td>{{ $data['b_kuota'] }}</td>
-          <td>{{ $data['b_grade'] }}</td>
-          <td>{{ $data['n_jarak'] }}</td>
-          <td>{{ $data['n_kuota'] }}</td>
-          <td>{{ $data['n_grade'] }}</td>
-          <td>{{ $data['h_jarak'] }}</td>
-          <td>{{ $data['h_kuota'] }}</td>
-          <td>{{ $data['h_grade'] }}</td> --}}
-          <td>{{ $data['hasil'] }} %</td>
-        </tr>
-        @endforeach
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
 
-</div>
-<!-- /.container-fluid -->
             <!-- Page Heading -->
 
 
-            <!-- Content Row -->
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">{{$sekolah->nama_sekolah}}</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="text-center">
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 40rem;" src="{{$sekolah->gambar}}" alt="">
+                      </div>
+                      <form action="{{ route('user.rating') }}" method="POST">
+                            {{ csrf_field() }}
+                      <div class="rating">
+                            <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $sekolah->userAverageRating }}" data-size="xs">
+                            <input type="hidden" name="id" required="" value="{{ $sekolah->id }}">
+                            <br/>
+                            <button class="btn btn-success">Submit Review</button>
+                            <br>
+                        </div>
+                      </form>
+                        <p>Visi : {{$sekolah->visi}}</p>
+                        <br>
+                        <p>Misi : {{$sekolah->misi}}</p>
+                        <br>
+                        <p>Alamat : {{$sekolah->alamat}}</p>
+                        <br>
+                        <p>No.Telp : {{$sekolah->visi}}</p>
+                    </div>
+                  </div>
+    
 
+                
+
+                      
+        
         <!-- End of Main Content -->
 
         <!-- Footer -->
@@ -192,26 +165,19 @@
         </div>
       </div>
     </div>
-  {{-- <script type="text/javascript">
-    $(document).ready(function() {
-    $('#dataTable').DataTable( {
-        "order": [[ 14, "desc" ]]
-    } );
-} );
 
-  </script> --}}
   <!-- Bootstrap core JavaScript-->
+  <script type="text/javascript">
+
+    $("#input-id").rating();
+
+</script>
   <script src="{{URL::to('sig/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{URL::to('sig/vendor/jquery/jquery.js')}}"></script>
   <script src="{{URL::to('sig/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="{{URL::to('sig/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-  <script src="{{URL::to('sig/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-  <script src="{{URL::to('sig/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-
-  <script src="{{URL::to('sig/js/demo/datatables-demo.js')}}"></script>
   <!-- Custom scripts for all pages-->
   <script src="{{URL::to('sig/js/sb-admin-2.min.js')}}"></script>
 

@@ -17,7 +17,6 @@
 
   <!-- Custom styles for this template-->
   <link href="{{URL::to('sig/css/sb-admin-2.min.css')}}" rel="stylesheet">
-  <link href="{{URL::to('sig/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -47,8 +46,7 @@
             </button>
 
             <!-- Topbar Search -->
-          
-
+           
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
@@ -87,76 +85,45 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Tabel perhitungan</h1>
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-  <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Tabel Perhitungan</h6>
-    @include('admin.notif')
-  </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Sekolah</th>
-            <th>Jarak</th>
-            <th>kuota</th>
-            <th>Passing Grade</th>
-            {{-- <th>Bobot Jarak</th>
-            <th>Bobot kuota</th>
-            <th>Bobot Passing Grade</th>
-            <th>normalisasi jarak</th>
-            <th>normalisasi kuota</th>
-            <th>normalisasi grade</th>
-            <th>V1 jarak</th>
-            <th>V1 kuota</th>
-            <th>V1 grade</th> --}}
-            <th>hasil Rekomendasi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php $i=0 ?>
-        @foreach($view as $data)
-        <?php $i++ ?>
-        <tr>
-        <td>{{$i}}</td>
-          
-          {{-- <td>{{ $data['nama_sekolah'] }}</td>
-          <td>{{ $data['bobot'] }}</td>
-          <td>{{ $data['value'] }} meter</td>
-          <td>{{ $data['kuota'] }}</td> --}}
-          <td>{{ $data['nama_sekolah'] }}</td>
-          <td>{{ $data['value'] }} meter</td>
-          <td>{{ $data['kuota'] }} Siswa</td>
-          <td>{{ $data['grade'] }}</td>
-          {{-- <td>{{ $data['bobot'] }}</td>
-          <td>{{ $data['b_kuota'] }}</td>
-          <td>{{ $data['b_grade'] }}</td>
-          <td>{{ $data['n_jarak'] }}</td>
-          <td>{{ $data['n_kuota'] }}</td>
-          <td>{{ $data['n_grade'] }}</td>
-          <td>{{ $data['h_jarak'] }}</td>
-          <td>{{ $data['h_kuota'] }}</td>
-          <td>{{ $data['h_grade'] }}</td> --}}
-          <td>{{ $data['hasil'] }} %</td>
-        </tr>
-        @endforeach
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
 
-</div>
-<!-- /.container-fluid -->
             <!-- Page Heading -->
 
 
             <!-- Content Row -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                      <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Sekolah</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$sekolah}} SMA Negeri</div>
+                          </div>
+                          <div class="col-auto">
+                            <i class="fas fa-school fa-2x text-gray-300"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Tentang PPDB</h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="text-center">
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 50rem;" src="{{URL::to('Amoeba/sekolah/kominfo.jpg')}}" alt="">
+                      </div>
+                        <p>Pemerintah melalui Kementerian Pendidikan dan Kebudayaan (Kemendikbud) telah menerbitkan Peraturan Menteri Pendidikan dan Kebudayaan (Permendikbud) Nomor 51 Tahun 2018 tentang Penerimaan Peserta Didik Baru (PPDB). Di dalam aturan ini, PPDB yang dilaksanakan Pemerintah Kabupaten/Kota untuk pendidikan dasar, maupun Pemerintah Provinsi untuk pendidikan menengah, wajib menggunakan tiga jalur, yakni jalur Zonasi (90 persen), jalur Prestasi (5 persen), dan jalur Perpindahan Orang tua/Wali (5 persen). .</p>
+                      <p class="mb-0">Sistem Pendukung Keputusan ini dibuat untuk calon siswa dapat mengetahui sekolah mana yang cocok atau direkomendasikan sebelum mendaftar PPDB online.</p>
+                    </div>
+                  </div>
+    
 
+          </div>
+
+                      
+        
         <!-- End of Main Content -->
 
         <!-- Footer -->
@@ -192,26 +159,14 @@
         </div>
       </div>
     </div>
-  {{-- <script type="text/javascript">
-    $(document).ready(function() {
-    $('#dataTable').DataTable( {
-        "order": [[ 14, "desc" ]]
-    } );
-} );
 
-  </script> --}}
   <!-- Bootstrap core JavaScript-->
   <script src="{{URL::to('sig/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{URL::to('sig/vendor/jquery/jquery.js')}}"></script>
   <script src="{{URL::to('sig/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="{{URL::to('sig/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-  <script src="{{URL::to('sig/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-  <script src="{{URL::to('sig/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-
-  <script src="{{URL::to('sig/js/demo/datatables-demo.js')}}"></script>
   <!-- Custom scripts for all pages-->
   <script src="{{URL::to('sig/js/sb-admin-2.min.js')}}"></script>
 

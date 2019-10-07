@@ -20,6 +20,7 @@
   <link href="{{URL::to('sig/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 </head>
+@include('user.notif')
 <body>
 <div class="container">
     <h1>Edit Profile</h1>
@@ -29,7 +30,7 @@
       <div class="col-md-3">
         <div class="text-center">
         <form class="form-horizontal" action="{{route('user.editprofil.submit',$user)}}" method="post"enctype="multipart/form-data">
-            <img src="/uploads/{{Auth::user()->photo}}" style="width:200px"  class="img-profile rounded-circle fa-user" alt="avatar">
+            <img src="/uploads/{{Auth::user()->photo}}" style="width:200px; height:200px"  class="img-profile rounded-circle fa-user" alt="avatar">
           <h6>Upload a different photo...</h6>
           <input name="photo" id="photo" type="file" class="form-control">
         </div>
@@ -141,7 +142,7 @@
             <div class="col-md-8">
               <input type="submit" class="btn btn-primary" value="Save Changes">
               <span></span>
-              <a href="/sekolah" type="button" class="btn btn-default">cancel</a>
+              <a href="/dashboard" type="button" class="btn btn-default">cancel</a>
             </div>
           </div>
         </form>

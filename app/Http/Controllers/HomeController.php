@@ -27,13 +27,40 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $sekolah='test';
+        return view('user.homepage')->with(compact('sekolah'));
     }
+
+    public function dashboard()
+    {
+       $sekolah=Sekolah::count();
+        return view('user.dashboard')->with(compact('sekolah'));
+    }
+
     public function sekolah()
     {
        $sekolah=Sekolah::all();
         return view('user.sekolah')->withSekolah($sekolah);
     }
+    public function show($id)
+    {
+        $sekolah=Sekolah::find($id);
+        return view('user.showsekolah')->with(compact('sekolah'));
+    }
+
+    public function ratingsekolah(Request $request)
+
+    {
+        request()->validate(['rate' => 'required']);
+        $post = Sekolah::find($request->id);
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating = $request->rate;
+        $rating->user_id = auth()->user()->id;
+        $post->ratings()->save($rating);
+        return redirect()->route("user.datasekolah");
+
+    }
+
     public function peta()
     {
         $d=Sekolah::all();
@@ -223,14 +250,14 @@ class HomeController extends Controller
         $mtk = Auth::user()->mtk;
         $ipa = Auth::user()->ipa;
         $t_un = $b_indo + $b_ing + $mtk + $ipa;
-        $data = $grade - $t_un ;
+        $data = $t_un - $grade ;
         if ($data >= 10){
             return 5;
         } elseif($data >= 1 && $data < 10){
            return 4;
         } elseif($data == 0){
             return 3;
-        } elseif($data <= -1 && $data > -10){
+        } elseif($data <= -1 && $data > -50){
             return 2;
         } elseif ($data <= -10) {
             return 1;
@@ -296,19 +323,19 @@ class HomeController extends Controller
     public function h_kuota($max_kuota)
     {
         $nilai = $max_kuota;
-        $hasil = ($nilai * 0.3) * 100;
+        $hasil = ($nilai * 0.25) * 100;
         return $hasil;
     }
     public function h_grade($max_grade)
     {
         $nilai = $max_grade;
-        $hasil = ($nilai * 0.4) * 100;
+        $hasil = ($nilai * 0.25) * 100;
         return $hasil;
     }
     public function h_jarak($min_jarak)
     {
         $nilai = $min_jarak;
-        $hasil = ($nilai * 0.3) * 100;
+        $hasil = ($nilai * 0.5) * 100;
         return $hasil;
     }
    

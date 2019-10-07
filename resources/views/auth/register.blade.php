@@ -83,7 +83,7 @@
                                     <div class="header">
                                         <h2>
                                             <center>Pilih Lokasi Anda</center>
-                                            <small><center><span class="text-danger">*Drag marker merah sesuai lokasi anda</span></small>
+                                            <small><center><span class="text-danger">*Drag marker merah sesuai lokasi anda untuk mendapatkan Latitude dan Longitude</span></small>
                                         </h2>
                                     </div>
                                     <div class="form-group">
@@ -117,6 +117,9 @@
                                     </span>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="text-center">
+                                <h3>Masukan Nilai UN</h3>
                         </div>
                         <div class="form-group row">
                             <label for="b_indo" class="col-md-4 col-form-label text-md-right">{{ __('Bahasa Indonesia') }}</label>
@@ -170,11 +173,15 @@
                                 @enderror
                             </div>
                         </div>
-                       
+                        <div class="text-center">
+                            <h3>Masukan Foto Profil dan Password</h3>
+                        </div>
                         <div class="form-group row">
+                                <label for="photo" class="col-md-4 col-form-label text-md-right">{{ __('Foto Profil') }}</label>
                             <div class="col-md-6">
+                                <div class="text-center">
                                 <input id="photo" type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus>
-
+                                </div>
                             </div>
                         </div>
 

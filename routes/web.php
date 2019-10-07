@@ -1,5 +1,5 @@
 <?php
-
+use App\Sekolah;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +13,9 @@
 
 Route::get('/', function () 
 {
-    return view('user.homepage');
+    $sekolah=Sekolah::all();
+    return view('user.homepage')->with(compact('sekolah'));
+    // return view('user.homepage');
 }
 );
 
@@ -22,8 +24,8 @@ Route::get('/', function ()
 Auth::routes();
 // Route::get('/register', 'Auth\RegisterController@showregisterForm')->name('auth.register');
 // Route::post('/registere', 'Auth\RegisterController@create')->name('auth.register.submit');
-Route::get('/home', 'HomeController@index')->name('user.homepage');
-Route::get('/sekolah','HomeController@sekolah')->name('user.datasekolah');
+Route::get('/dashboard', 'HomeController@dashboard')->name('user.dashboard');
+Route::get('/sekolahh','HomeController@sekolah')->name('user.datasekolah');
 Route::get('/persebaran','HomeController@peta')->name('user.petasebaransekolah');
 Route::get('/rutejalan/{latitude}/{longitude}','HomeController@lihat')->name('user.rutejalan');
 Route::get('/rekomendasi','HomeController@rekomendasi')->name('user.rekomendasisekolah');
@@ -31,7 +33,8 @@ Route::get('/hasil','HomeController@hasil')->name('user.hasilrekomendasi');
 Route::get('/perhitungan','HomeController@perhitungan')->name('user.perhitungan');
 Route::get('/editprofil/{edituser}','HomeController@editprofil')->name('user.editprofil');
 Route::put('/editprofil/{edituser}/update','HomeController@editprofilsubmit')->name('user.editprofil.submit');
-
+Route::get('/sekolah/{id}', 'HomeController@show')->name('user.showsekolah');
+Route::post('/rating', 'HomeController@ratingsekolah')->name('user.rating');
 Route::prefix('admin')->group(function()
 {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
@@ -68,6 +71,4 @@ Route::prefix('admin')->group(function()
 
 });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
